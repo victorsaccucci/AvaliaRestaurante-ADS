@@ -11,7 +11,7 @@ public class ProprietarioService {
     @Autowired
     private ProprietarioRepository repository;
 
-    public Proprietario save (Proprietario novoProprietario){
+    public Proprietario salvar (Proprietario novoProprietario){
         return repository.save(novoProprietario);
     }
 }

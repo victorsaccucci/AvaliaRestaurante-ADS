@@ -11,7 +11,7 @@ public class VisitanteService {
     @Autowired
     private VisitanteRepository repository;
 
-    public Visitante save(Visitante novoVisitante){
+    public Visitante salvar(Visitante novoVisitante){
         return repository.save(novoVisitante);
     }
 }
