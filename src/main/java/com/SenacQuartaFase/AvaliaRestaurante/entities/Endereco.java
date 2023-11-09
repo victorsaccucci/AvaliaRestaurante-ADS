@@ -18,15 +18,16 @@ public class Endereco {
     private String cidade;
     private String bairro;
     private String estado;
-    private String CEP;
+    private String cep;
 
-    public Endereco(Long id, String rua, Integer numero, String cidade, String bairro, String estado, String CEP) {
+    public Endereco(Long id, String rua, Integer numero, String cidade, String bairro, String estado, String cep) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.cidade = cidade;
         this.bairro = bairro;
         this.estado = estado;
+        this.cep = cep;
     }
     public Endereco(){
     }

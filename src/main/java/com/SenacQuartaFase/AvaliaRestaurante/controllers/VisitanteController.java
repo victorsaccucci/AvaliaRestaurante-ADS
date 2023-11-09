@@ -1,6 +1,6 @@
 package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 
-import com.SenacQuartaFase.AvaliaRestaurante.entities.Visitante;
+import com.SenacQuartaFase.AvaliaRestaurante.entities.Pessoa;
 import com.SenacQuartaFase.AvaliaRestaurante.services.VisitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class VisitanteController {
     private VisitanteService service;
 
     @PostMapping
-    public Visitante salvar(@RequestBody Visitante novoVisitante){
+    public Pessoa salvar(@RequestBody Pessoa novoVisitante){
         return service.salvar(novoVisitante);
     }
 }

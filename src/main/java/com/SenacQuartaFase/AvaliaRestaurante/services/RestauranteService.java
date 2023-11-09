@@ -5,6 +5,8 @@ import com.SenacQuartaFase.AvaliaRestaurante.repositories.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RestauranteService {
 
@@ -13,5 +15,9 @@ public class RestauranteService {
 
     public Restaurante save(Restaurante novoRestaurante){
         return repository.save(novoRestaurante);
+    }
+
+    public List<Restaurante> buscarTodos(){
+        return repository.findAll();
     }
 }

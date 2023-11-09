@@ -7,29 +7,29 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "proprietario")
-public class Proprietario {
+@Table(name = "visitante")
+public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String CNPJ;
     private String email;
+    private String cpf;
     private String senha;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public Proprietario(Long id, String nome, String CNPJ, String email, String senha, Endereco endereco) {
+    public Pessoa(Long id, String nome, String email, String cpf, String senha, Endereco endereco) {
         this.id = id;
         this.nome = nome;
-        this.CNPJ = CNPJ;
         this.email = email;
+        this.cpf = cpf;
         this.senha = senha;
         this.endereco = endereco;
     }
-    public Proprietario(){
+    public Pessoa() {
     }
 }
