@@ -20,4 +20,13 @@ public class RestauranteService {
     public List<Restaurante> buscarTodos(){
         return repository.findAll();
     }
+    public Restaurante listarId(Long id){
+        return repository.listarId(id);
+    }
+    public void deletarRestaurante(Long id){
+        repository.deleteById(id);
+    }
+    public Restaurante atualizar(Restaurante restaurante){
+        return repository.save(restaurante);
+    }
 }

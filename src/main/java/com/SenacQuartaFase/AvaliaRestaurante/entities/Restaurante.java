@@ -17,8 +17,8 @@ public class Restaurante {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "proprietario_id")
-    private Pessoa visitante;
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
@@ -31,10 +31,10 @@ public class Restaurante {
     private Blob imagem;
     private String cnpj;
 
-    public Restaurante(Long id, String nome, Pessoa visitante, Endereco endereco, double avaliacao, Blob imagem, String cnpj) {
+    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, Blob imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
-        this.visitante = visitante;
+        this.pessoa = pessoa;
         this.endereco = endereco;
         this.avaliacao = avaliacao;
         this.imagem = imagem;
