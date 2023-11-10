@@ -31,7 +31,7 @@ public class RestauranteSpecification {
             }  else if(seletor.getAvaliacaoMin() != null){
                 predicates.add(cb.greaterThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMin()));
             } else if(seletor.getAvaliacaoMax() != null){
-                predicates.add(cb.lessThanOrEqualTo(root.get("avalizacao"), seletor.getAvaliacaoMax()));
+                predicates.add(cb.lessThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMax()));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
