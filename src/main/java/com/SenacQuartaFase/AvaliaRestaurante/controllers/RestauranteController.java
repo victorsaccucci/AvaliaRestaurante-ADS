@@ -1,6 +1,7 @@
 package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
+import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,10 @@ public class RestauranteController {
     @GetMapping(value = "/{id}")
     public Restaurante buscarId(@PathVariable Long id){
         return service.listarId(id);
+    }
+    @PostMapping("/filtro")
+    public List<Restaurante> buscarComSeletor(@RequestBody RestauranteSeletor seletor){
+        return service.listarComSeletor(seletor);
     }
     @DeleteMapping(value = "/{id}")
     public void deletarRestaurante(@PathVariable Long id){
