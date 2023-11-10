@@ -5,6 +5,7 @@ import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class RestauranteController {
     }
     @GetMapping
     public List<Restaurante> buscarTodos(){
-        return service.buscarTodos();
+        List<Restaurante> restaurantes = service.buscarTodos();
+        return restaurantes;
     }
     @GetMapping(value = "/{id}")
     public Restaurante buscarId(@PathVariable Long id){
