@@ -27,11 +27,12 @@ public class Restaurante {
     private double avaliacao;
 
     @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private Blob imagem;
+    @Column(name = "imagem", columnDefinition = "BLOB")
+    private byte[] imagem;
+
     private String cnpj;
 
-    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, Blob imagem, String cnpj) {
+    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao,  byte[] imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.pessoa = pessoa;

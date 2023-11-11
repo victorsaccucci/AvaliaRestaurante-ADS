@@ -3,11 +3,13 @@ package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -19,9 +21,12 @@ public class RestauranteController {
     private RestauranteService service;
 
     @PostMapping
-    public Restaurante salvar(@RequestBody Restaurante novoRestaurante){
+    public Restaurante salvar(@RequestBody Restaurante novoRestaurante) {
+        byte[] imagemBytes = novoRestaurante.getImagem();
+        novoRestaurante.setImagem(imagemBytes);
         return service.save(novoRestaurante);
     }
+
     @GetMapping
     public List<Restaurante> buscarTodos(){
         List<Restaurante> restaurantes = service.buscarTodos();
