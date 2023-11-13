@@ -14,4 +14,8 @@ public class PessoaService {
     public Pessoa salvar(Pessoa novoVisitante){
         return repository.save(novoVisitante);
     }
+
+    public Pessoa buscarId(Long id){
+        return repository.buscarPeloId(id);
+    }
 }

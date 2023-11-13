@@ -10,4 +10,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
     @Query(value = "SELECT * FROM pessoa WHERE email = :email and senha = :senha", nativeQuery = true)
     public Pessoa Login(String email, String senha);
+
+    @Query(value = "SELECT * FROM pessoa WHERE id =? ", nativeQuery = true)
+    public Pessoa buscarPeloId(Long id);
 }

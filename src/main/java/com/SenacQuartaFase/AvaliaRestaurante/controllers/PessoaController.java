@@ -23,22 +23,20 @@ public class PessoaController {
     private PessoaRepository repository;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Long> loginUser(@RequestBody PessoaDTO pessoaDTO, HttpServletRequest request) {
+    public ResponseEntity<Pessoa> loginUser(@RequestBody PessoaDTO pessoaDTO, HttpServletRequest request){
         Pessoa data = this.repository.Login(pessoaDTO.getEmail(), pessoaDTO.getSenha());
-
-        if (data != null) {
+        if(data != null){
             HttpSession session = request.getSession();
             session.setAttribute("pessoa", data);
-            Pessoa user = (Pessoa) session.getAttribute("pessoa");
-            Long userId = user.getId();
-
-            System.out.print("------ID DO USUARIO LOGADO:------" + userId);
-            return ResponseEntity.ok(userId);
+            return ResponseEntity.ok(data);
         }
-
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    @GetMapping(value = "/{id}")
+    public Pessoa buscarPeloId(@PathVariable Long id){
+        return service.buscarId(id);
+    }
 
     @PostMapping
     public Pessoa salvar(@RequestBody Pessoa novoVisitante){
