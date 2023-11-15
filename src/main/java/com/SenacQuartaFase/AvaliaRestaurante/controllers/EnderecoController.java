@@ -28,7 +28,7 @@ public class EnderecoController {
         return service.atualizar(endereco) != null;
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public boolean excluir(@PathVariable Long id){
         return service.excluir(id);
     }

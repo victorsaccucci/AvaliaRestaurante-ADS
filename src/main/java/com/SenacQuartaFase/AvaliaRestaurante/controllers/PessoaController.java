@@ -49,7 +49,7 @@ public class PessoaController {
         return service.atualizar(visitante) != null;
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public boolean excluir(@PathVariable Long id){
         return service.excluir(id);
     }
