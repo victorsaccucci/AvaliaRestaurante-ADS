@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +21,11 @@ public class RestauranteController {
     @Autowired
     private RestauranteService service;
 
-    @PostMapping
-    public Restaurante salvar(@RequestBody Restaurante novoRestaurante) {
-        byte[] imagemBytes = novoRestaurante.getImagem();
-        novoRestaurante.setImagem(imagemBytes);
-        return service.save(novoRestaurante);
+    @PostMapping()
+    public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) {
+        System.out.println("JSON recebido: " + restauranteComImagem.toString());
+        Restaurante restauranteSalvo = service.save(restauranteComImagem);
+        return ResponseEntity.ok(restauranteSalvo);
     }
 
     @GetMapping

@@ -24,11 +24,11 @@ public class PessoaController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<Pessoa> loginUser(@RequestBody PessoaDTO pessoaDTO, HttpServletRequest request){
-        Pessoa data = this.repository.Login(pessoaDTO.getEmail(), pessoaDTO.getSenha());
-        if(data != null){
+        Pessoa pessoa = this.repository.Login(pessoaDTO.getEmail(), pessoaDTO.getSenha());
+        if(pessoa != null){
             HttpSession session = request.getSession();
-            session.setAttribute("pessoa", data);
-            return ResponseEntity.ok(data);
+            session.setAttribute("pessoa", pessoa);
+            return ResponseEntity.ok(pessoa);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

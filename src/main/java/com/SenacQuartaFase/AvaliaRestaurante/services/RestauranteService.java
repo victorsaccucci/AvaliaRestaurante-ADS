@@ -29,9 +29,9 @@ public class RestauranteService {
     }
 
     public List<Restaurante> listarComSeletor(RestauranteSeletor seletor){
-        Specification<Restaurante> specification = RestauranteSpecification.comFiltros(seletor);
+    Specification<Restaurante> specification = RestauranteSpecification.comFiltros(seletor);
         return repository.findAll(specification);
-    }
+}
     public void deletarRestaurante(Long id){
         repository.deleteById(id);
     }

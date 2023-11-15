@@ -1,4 +1,5 @@
 package com.SenacQuartaFase.AvaliaRestaurante.entities;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
