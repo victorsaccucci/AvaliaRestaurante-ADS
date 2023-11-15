@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -20,8 +21,7 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository repository;
 
-    public Restaurante save(Restaurante novoRestaurante) throws AvaliaRestauranteException{
-        validarCamposObrigatorios(novoRestaurante);
+    public Restaurante save(Restaurante novoRestaurante){
         return repository.save(novoRestaurante);
     }
 
@@ -61,7 +61,7 @@ public class RestauranteService {
         }
     }
 
-    private String validarCampoImagem(byte[] valorCampo, String nomeCampo) {
+    private String validarCampoImagem(String valorCampo, String nomeCampo) {
         if(valorCampo == null){
             return "Informe o " +nomeCampo + "\n";
         }

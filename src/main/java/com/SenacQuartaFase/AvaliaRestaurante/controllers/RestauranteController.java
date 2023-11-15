@@ -4,6 +4,7 @@ import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
 import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,43 +22,39 @@ public class RestauranteController {
     private RestauranteService service;
 
     @PostMapping()
-    public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) throws AvaliaRestauranteException {
+    public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) {
         System.out.println("JSON recebido: " + restauranteComImagem.toString());
         Restaurante restauranteSalvo = service.save(restauranteComImagem);
         return ResponseEntity.ok(restauranteSalvo);
-
-    }
-        @GetMapping
-        public List<Restaurante> buscarTodos() {
-            List<Restaurante> restaurantes = service.buscarTodos();
-            return restaurantes;
-        }
-        @GetMapping(value = "/{id}")
-        public Restaurante buscarId (@PathVariable Long id){
-            return service.listarId(id);
-        }
-        @PostMapping("/filtro")
-        public List<Restaurante> buscarComSeletor (@RequestBody RestauranteSeletor seletor){
-            return service.listarComSeletor(seletor);
-        }
-
-        @DeleteMapping(value = "/{id}")
-        public void deletarRestaurante (@PathVariable Long id){
-            service.deletarRestaurante(id);
-        }
-
-        @PutMapping("/{id}")
-        public ResponseEntity<Restaurante> atualizarRestaurante (@RequestBody Restaurante
-        restaurante, @PathVariable Long id) throws AvaliaRestauranteException {
-            Restaurante restauranteExistente = service.listarId(id);
-
-            if (restauranteExistente != null) {
-                restaurante.setId(id);
-                Restaurante restauranteAtualizado = service.atualizar(restaurante);
-                return ResponseEntity.ok(restauranteAtualizado);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        }
     }
 
+    @GetMapping
+    public List<Restaurante> buscarTodos(){
+        List<Restaurante> restaurantes = service.buscarTodos();
+        return restaurantes;
+    }
+    @GetMapping(value = "/{id}")
+    public Restaurante buscarId(@PathVariable Long id){
+        return service.listarId(id);
+    }
+    @PostMapping("/filtro")
+    public List<Restaurante> buscarComSeletor(@RequestBody RestauranteSeletor seletor){
+        return service.listarComSeletor(seletor);
+    }
+    @DeleteMapping(value = "/{id}")
+    public void deletarRestaurante(@PathVariable Long id){
+        service.deletarRestaurante(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) throws AvaliaRestauranteException{
+        Restaurante restauranteExistente = service.listarId(id);
+
+        if (restauranteExistente != null) {
+            restaurante.setId(id);
+            Restaurante restauranteAtualizado = service.atualizar(restaurante);
+            return ResponseEntity.ok(restauranteAtualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}

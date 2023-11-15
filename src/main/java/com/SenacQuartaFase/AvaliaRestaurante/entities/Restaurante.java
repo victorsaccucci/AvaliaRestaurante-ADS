@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
 import java.sql.Blob;
 
 @Getter
@@ -27,13 +28,12 @@ public class Restaurante {
 
     private double avaliacao;
 
-    @Lob
-    @Column(name = "imagem", columnDefinition = "BLOB")
-    private byte[] imagem;
+    @Column(columnDefinition = "TEXT")
+    private String imagem;
 
     private String cnpj;
 
-    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao,  byte[] imagem, String cnpj) {
+    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao,  String imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.pessoa = pessoa;
