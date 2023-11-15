@@ -2,6 +2,7 @@ package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Pessoa;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.PessoaDTO;
+import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
 import com.SenacQuartaFase.AvaliaRestaurante.repositories.PessoaRepository;
 import com.SenacQuartaFase.AvaliaRestaurante.services.PessoaService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +40,17 @@ public class PessoaController {
     }
 
     @PostMapping
-    public Pessoa salvar(@RequestBody Pessoa novoVisitante){
+    public Pessoa salvar(@RequestBody Pessoa novoVisitante) throws AvaliaRestauranteException {
         return service.salvar(novoVisitante);
+    }
+
+    @PutMapping()
+    public boolean atualizar(@RequestBody Pessoa visitante) throws AvaliaRestauranteException{
+        return service.atualizar(visitante) != null;
+    }
+
+    @DeleteMapping("{/id}")
+    public boolean excluir(@PathVariable Long id){
+        return service.excluir(id);
     }
 }
