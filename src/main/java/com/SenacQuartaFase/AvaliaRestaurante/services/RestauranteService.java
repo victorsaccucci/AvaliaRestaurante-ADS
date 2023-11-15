@@ -21,7 +21,8 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository repository;
 
-    public Restaurante save(Restaurante novoRestaurante){
+    public Restaurante save(Restaurante novoRestaurante) throws AvaliaRestauranteException{
+        validarCamposObrigatorios(novoRestaurante);
         return repository.save(novoRestaurante);
     }
 
