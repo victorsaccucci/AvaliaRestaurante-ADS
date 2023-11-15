@@ -1,6 +1,7 @@
 package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
+import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -21,7 +22,7 @@ public class RestauranteController {
     private RestauranteService service;
 
     @PostMapping
-    public Restaurante salvar(@RequestBody Restaurante novoRestaurante) {
+    public Restaurante salvar(@RequestBody Restaurante novoRestaurante) throws AvaliaRestauranteException {
         byte[] imagemBytes = novoRestaurante.getImagem();
         novoRestaurante.setImagem(imagemBytes);
         return service.save(novoRestaurante);
@@ -45,7 +46,7 @@ public class RestauranteController {
         service.deletarRestaurante(id);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) {
+    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) throws AvaliaRestauranteException{
         Restaurante restauranteExistente = service.listarId(id);
 
         if (restauranteExistente != null) {
