@@ -56,7 +56,7 @@ public class RestauranteService {
         mensagemValidacao += validarCampoPessoa(restaurante.getPessoa(), "pessoa");
         mensagemValidacao += validarCampoImagem(restaurante.getImagem(), "imagem");
 
-        if(mensagemValidacao.isEmpty()){
+        if(!mensagemValidacao.isEmpty()){
             throw new AvaliaRestauranteException(mensagemValidacao);
         }
     }

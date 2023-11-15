@@ -40,7 +40,7 @@ public class PessoaService {
         mensagemValidacao += validarCampoString(pessoa.getSenha(), "senha");
         mensagemValidacao += validarCampoEndereco(pessoa.getEndereco(), "endereco");
 
-        if(mensagemValidacao.isEmpty()){
+        if(!mensagemValidacao.isEmpty()){
             throw new AvaliaRestauranteException(mensagemValidacao);
         }
     }

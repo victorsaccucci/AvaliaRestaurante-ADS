@@ -40,7 +40,7 @@ public class EnderecoService {
         mensagemValidacao += validarCampoString(endereco.getCidade(), "cidade");
         mensagemValidacao += validarCampoString(endereco.getEstado(), "estado");
 
-        if(mensagemValidacao.isEmpty()){
+        if(!mensagemValidacao.isEmpty()){
             throw new AvaliaRestauranteException(mensagemValidacao);
         }
     }

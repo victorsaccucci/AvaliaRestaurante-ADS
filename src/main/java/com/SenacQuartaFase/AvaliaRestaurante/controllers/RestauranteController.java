@@ -22,7 +22,7 @@ public class RestauranteController {
     private RestauranteService service;
 
     @PostMapping()
-    public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) {
+    public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) throws AvaliaRestauranteException{
         System.out.println("JSON recebido: " + restauranteComImagem.toString());
         Restaurante restauranteSalvo = service.save(restauranteComImagem);
         return ResponseEntity.ok(restauranteSalvo);
@@ -33,18 +33,22 @@ public class RestauranteController {
         List<Restaurante> restaurantes = service.buscarTodos();
         return restaurantes;
     }
+
     @GetMapping(value = "/{id}")
     public Restaurante buscarId(@PathVariable Long id){
         return service.listarId(id);
     }
+
     @PostMapping("/filtro")
     public List<Restaurante> buscarComSeletor(@RequestBody RestauranteSeletor seletor){
         return service.listarComSeletor(seletor);
     }
+
     @DeleteMapping(value = "/{id}")
     public void deletarRestaurante(@PathVariable Long id){
         service.deletarRestaurante(id);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) throws AvaliaRestauranteException{
         Restaurante restauranteExistente = service.listarId(id);
