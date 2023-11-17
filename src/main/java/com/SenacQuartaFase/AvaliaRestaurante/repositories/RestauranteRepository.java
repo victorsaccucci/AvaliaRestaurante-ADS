@@ -13,4 +13,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long>,
     @Query(value = "SELECT *  FROM restaurante WHERE id = ?", nativeQuery = true)
     Restaurante listarId(Long id);
 
+    @Query(value = "SELECT *  FROM restaurante WHERE pessoa_id = ?", nativeQuery = true)
+    List<Restaurante> listarPorIdUsuario(Long id);
+
 }

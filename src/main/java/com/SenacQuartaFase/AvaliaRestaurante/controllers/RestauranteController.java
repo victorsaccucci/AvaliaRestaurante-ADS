@@ -4,13 +4,11 @@ import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
 import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -28,15 +26,21 @@ public class RestauranteController {
         return ResponseEntity.ok(restauranteSalvo);
     }
 
+    @GetMapping(value = "/{id}")
+    public List<Restaurante> listarPorIdUsuario(@PathVariable Long id){
+        List<Restaurante> buscados = service.listarPorIdUsuario(id);
+        return buscados;
+    }
+
     @GetMapping
     public List<Restaurante> buscarTodos(){
         List<Restaurante> restaurantes = service.buscarTodos();
         return restaurantes;
     }
 
-    @GetMapping(value = "/{id}")
-    public Restaurante buscarId(@PathVariable Long id){
-        return service.listarId(id);
+    @GetMapping(value = "/buscar/{id}")
+    public Restaurante buscarRestaurantePeloId(@PathVariable Long id){
+        return service.buscarRestaurantePeloId(id);
     }
 
     @PostMapping("/filtro")
@@ -51,7 +55,7 @@ public class RestauranteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) throws AvaliaRestauranteException{
-        Restaurante restauranteExistente = service.listarId(id);
+        Restaurante restauranteExistente = service.buscarRestaurantePeloId(id);
 
         if (restauranteExistente != null) {
             restaurante.setId(id);

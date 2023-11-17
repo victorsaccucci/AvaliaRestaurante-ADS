@@ -26,11 +26,16 @@ public class RestauranteService {
         return repository.save(novoRestaurante);
     }
 
+    public List<Restaurante> listarPorIdUsuario(Long id){
+        List<Restaurante> buscados = repository.listarPorIdUsuario(id);
+        return buscados;
+    }
+
     public List<Restaurante> buscarTodos(){
         return repository.findAll();
     }
 
-    public Restaurante listarId(Long id){
+    public Restaurante buscarRestaurantePeloId(Long id){
         return repository.listarId(id);
     }
 
