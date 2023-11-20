@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -18,17 +20,21 @@ public class Pessoa {
     private String cpf;
     private String senha;
 
+    @OneToMany(mappedBy = "pessoa")
+    private List<Avaliacao> avaliacoes;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public Pessoa(Long id, String nome, String email, String cpf, String senha, Endereco endereco) {
+    public Pessoa(Long id, String nome, List<Avaliacao> avaliacoes, String email, String cpf, String senha, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.senha = senha;
         this.endereco = endereco;
+        this.avaliacoes = avaliacoes;
     }
     public Pessoa() {
     }

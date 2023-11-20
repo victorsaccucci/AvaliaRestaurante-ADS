@@ -54,7 +54,7 @@ public class RestauranteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id) throws AvaliaRestauranteException{
+    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id){
         Restaurante restauranteExistente = service.buscarRestaurantePeloId(id);
 
         if (restauranteExistente != null) {

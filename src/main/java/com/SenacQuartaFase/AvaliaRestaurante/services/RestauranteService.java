@@ -1,6 +1,5 @@
 package com.SenacQuartaFase.AvaliaRestaurante.services;
 
-import com.SenacQuartaFase.AvaliaRestaurante.AvaliaRestauranteApplication;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Endereco;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Pessoa;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.List;
 
 @Service
@@ -48,8 +46,7 @@ public class RestauranteService {
         repository.deleteById(id);
     }
 
-    public Restaurante atualizar(Restaurante restaurante) throws AvaliaRestauranteException{
-        validarCamposObrigatorios(restaurante);
+    public Restaurante atualizar(Restaurante restaurante){
         return repository.save(restaurante);
     }
 
@@ -57,7 +54,6 @@ public class RestauranteService {
         String mensagemValidacao = "";
         mensagemValidacao += validarCampoString(restaurante.getNome(), "nome");
         mensagemValidacao += validarCampoString(restaurante.getCnpj(), "cnpj");
-        mensagemValidacao += validarCampoDouble(restaurante.getAvaliacao(), "avaliacao");
         mensagemValidacao += validarCampoEndereco(restaurante.getEndereco(), "endereco");
         mensagemValidacao += validarCampoPessoa(restaurante.getPessoa(), "pessoa");
         mensagemValidacao += validarCampoImagem(restaurante.getImagem(), "imagem");

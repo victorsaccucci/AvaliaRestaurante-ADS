@@ -1,11 +1,9 @@
 package com.SenacQuartaFase.AvaliaRestaurante.entities;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
-import java.sql.Blob;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,21 +24,22 @@ public class Restaurante {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    private double avaliacao;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String imagem;
 
     private String cnpj;
 
-    public Restaurante(Long id, String nome, Pessoa pessoa, Endereco endereco, double avaliacao,  String imagem, String cnpj) {
+    @OneToMany(mappedBy = "restaurante")
+    private List<Avaliacao> avaliacoes;
+
+    public Restaurante(Long id, List<Avaliacao> avaliacoes, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, String imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.pessoa = pessoa;
         this.endereco = endereco;
-        this.avaliacao = avaliacao;
         this.imagem = imagem;
         this.cnpj = cnpj;
+        this.avaliacoes = avaliacoes;
     }
 
     public Restaurante() {
