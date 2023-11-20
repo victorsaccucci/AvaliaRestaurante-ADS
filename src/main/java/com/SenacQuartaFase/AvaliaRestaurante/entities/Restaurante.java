@@ -1,4 +1,6 @@
 package com.SenacQuartaFase.AvaliaRestaurante.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class Restaurante {
 
     private String cnpj;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "restaurante")
     private List<Avaliacao> avaliacoes;
 
