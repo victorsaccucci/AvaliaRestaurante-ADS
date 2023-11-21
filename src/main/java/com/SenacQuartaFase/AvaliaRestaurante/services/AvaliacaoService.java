@@ -7,6 +7,8 @@ import com.SenacQuartaFase.AvaliaRestaurante.repositories.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AvaliacaoService {
 
@@ -25,6 +27,11 @@ public class AvaliacaoService {
             throw new AvaliaRestauranteException("Usuário sem permissâo para excluir");
         }
         repository.delete(avaliacaoParaExcluir);
+    }
+
+    public List<Avaliacao> buscarAvaliacoesPeloIdUsuario(Long id){
+        List<Avaliacao> avaliacoesBuscadas = repository.buscarRestaurantePeloIdusuario(id);
+        return avaliacoesBuscadas;
     }
 
 }
