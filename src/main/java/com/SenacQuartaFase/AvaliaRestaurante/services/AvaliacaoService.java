@@ -7,8 +7,6 @@ import com.SenacQuartaFase.AvaliaRestaurante.repositories.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AvaliacaoService {
 

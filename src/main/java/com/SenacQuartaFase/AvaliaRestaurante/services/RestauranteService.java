@@ -57,6 +57,7 @@ public class RestauranteService {
         mensagemValidacao += validarCampoEndereco(restaurante.getEndereco(), "endereco");
         mensagemValidacao += validarCampoPessoa(restaurante.getPessoa(), "pessoa");
         mensagemValidacao += validarCampoImagem(restaurante.getImagem(), "imagem");
+        //mensagemValidacao += validarCampoList(restaurante.getAvaliacoes(), "avaliacoes");
 
         if(!mensagemValidacao.isEmpty()){
             throw new AvaliaRestauranteException(mensagemValidacao);
@@ -65,14 +66,14 @@ public class RestauranteService {
 
     private String validarCampoImagem(String valorCampo, String nomeCampo) {
         if(valorCampo == null){
-            return "Informe o " +nomeCampo + "\n";
+            return "Selecione a " +nomeCampo + "\n";
         }
         return "";
     }
 
     private String validarCampoPessoa(Pessoa valorCampo, String nomeCampo) {
         if(valorCampo == null){
-            return "Informe o " +nomeCampo + "\n";
+            return "Informe a " +nomeCampo + "\n";
         }
         return "";
     }
@@ -84,9 +85,9 @@ public class RestauranteService {
         return "";
     }
 
-    private String validarCampoDouble(Double valorCampo, String nomeCampo) {
+    private String validarCampoList(List valorCampo, String nomeCampo) {
         if(valorCampo == null){
-            return "Informe o " +nomeCampo + "\n";
+            return "Informe as " +nomeCampo + "\n";
         }
         return "";
     }
