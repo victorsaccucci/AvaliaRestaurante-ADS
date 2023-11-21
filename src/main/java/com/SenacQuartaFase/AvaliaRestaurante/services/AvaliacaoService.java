@@ -21,9 +21,9 @@ public class AvaliacaoService {
 
     public void deletarAvaliacao(Avaliacao avaliacaoParaExcluir) throws AvaliaRestauranteException {
         Pessoa quemQuerExcluirAvaliacao = avaliacaoParaExcluir.getPessoa();
-        Avaliacao avaliacaoNoBanco = this.repository.getReferenceById(avaliacaoParaExcluir.getId());
+        Avaliacao avaliacaoNoBanco = this.repository.findById(avaliacaoParaExcluir.getId()).get();
 
-        if (quemQuerExcluirAvaliacao != avaliacaoNoBanco.getPessoa()) {
+        if (quemQuerExcluirAvaliacao.getId() != avaliacaoNoBanco.getPessoa().getId()) {
             throw new AvaliaRestauranteException("Usuário sem permissâo para excluir");
         }
         repository.delete(avaliacaoParaExcluir);
