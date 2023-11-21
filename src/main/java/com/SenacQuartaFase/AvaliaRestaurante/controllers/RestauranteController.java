@@ -22,9 +22,12 @@ public class RestauranteController {
     @PostMapping()
     public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) throws AvaliaRestauranteException{
         System.out.println("JSON recebido: " + restauranteComImagem.toString());
+
         Restaurante restauranteSalvo = service.save(restauranteComImagem);
         return ResponseEntity.ok(restauranteSalvo);
     }
+
+
 
     @GetMapping(value = "/{id}")
     public List<Restaurante> listarPorIdUsuario(@PathVariable Long id){
