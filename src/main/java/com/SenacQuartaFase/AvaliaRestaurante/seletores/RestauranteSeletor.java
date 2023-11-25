@@ -3,7 +3,11 @@ package com.SenacQuartaFase.AvaliaRestaurante.seletores;
 public class RestauranteSeletor extends BaseSeletor{
 
     private String nome;
-    private String endereco;
+    private String rua;
+    private String bairro;
+    private String cep;
+    private String cidade;
+    private int numero;
     private Double avaliacaoMin;
     private Double avaliacaoMax;
 
@@ -13,14 +17,6 @@ public class RestauranteSeletor extends BaseSeletor{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 
     public Double getAvaliacaoMin() {
@@ -37,5 +33,45 @@ public class RestauranteSeletor extends BaseSeletor{
 
     public void setAvaliacaoMax(Double avaliacaoMax) {
         this.avaliacaoMax = avaliacaoMax;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 }
