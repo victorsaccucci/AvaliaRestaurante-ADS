@@ -27,8 +27,6 @@ public class RestauranteController {
         return ResponseEntity.ok(restauranteSalvo);
     }
 
-
-
     @GetMapping(value = "/{id}")
     public List<Restaurante> listarPorIdUsuario(@PathVariable Long id){
         List<Restaurante> buscados = service.listarPorIdUsuario(id);
