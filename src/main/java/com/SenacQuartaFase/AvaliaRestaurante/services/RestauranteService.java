@@ -1,5 +1,6 @@
 package com.SenacQuartaFase.AvaliaRestaurante.services;
 
+import com.SenacQuartaFase.AvaliaRestaurante.entities.Avaliacao;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Endereco;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Pessoa;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
@@ -97,5 +98,24 @@ public class RestauranteService {
             return "Informe o " +nomeCampo + "\n";
         }
         return "";
+    }
+
+    public double calcularMediaAvaliacoes(Long restauranteId) throws AvaliaRestauranteException {
+        Restaurante restaurante = repository.findById(restauranteId)
+                .orElseThrow(() -> new AvaliaRestauranteException("Restaurante não encontrado"));
+
+        List<Avaliacao> avaliacoes = restaurante.getAvaliacoes();
+
+        if (avaliacoes == null || avaliacoes.isEmpty()) {
+            return 0.0;
+        }
+
+        double somaAvaliacoes = 0.0;
+
+        for (Avaliacao avaliacao : avaliacoes) {
+            somaAvaliacoes += avaliacao.getNota();
+        }
+
+        return somaAvaliacoes / avaliacoes.size();
     }
 }

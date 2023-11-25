@@ -66,4 +66,9 @@ public class RestauranteController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}/media-avaliacoes")
+    public ResponseEntity<Double> calcularMediaAvaliacoes(@PathVariable Long id) throws AvaliaRestauranteException {
+        return ResponseEntity.ok(service.calcularMediaAvaliacoes(id));
+    }
 }
