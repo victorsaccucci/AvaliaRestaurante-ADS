@@ -15,16 +15,32 @@ public class RestauranteSpecification {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
+            //Busca pelo nome do restaurante
             if(seletor.getNome() != null){
                 predicates.add(cb.like(cb.lower(root.get("nome")), "%"
                         + seletor.getNome().toLowerCase() + "%"));
             }
 
-            if(seletor.getEndereco() != null){
+            //Buscas pelo endereço do restaurante
+            if(seletor.getRua() != null){
                 predicates.add(cb.like(root.join("endereco").get("rua"),
-                        "%" + seletor.getEndereco() + "%"));
+                        "%" + seletor.getRua() + "%"));
+            }
+            if (seletor.getCep() != null){
+                predicates.add(cb.like(root.join("endereco").get("cep"),
+                        "%" + seletor.getCep() + "%"));
+            }
+            if(seletor.getBairro() != null){
+                predicates.add(cb.like(root.join("endereco").get("bairro"),
+                        "%" + seletor.getBairro() + "%"));
+            }
+            if(seletor.getCidade() != null){
+                predicates.add(cb.like(root.join("endereco").get("cidade"),
+                        "%" + seletor.getCidade() + "%"));
             }
 
+
+            //Busca pela avaliação minima e maxima
             if(seletor.getAvaliacaoMin() != null && seletor.getAvaliacaoMax() != null){
                 predicates.add(cb.between(root.get("avaliacao"), seletor.getAvaliacaoMin(),
                         seletor.getAvaliacaoMax()));
