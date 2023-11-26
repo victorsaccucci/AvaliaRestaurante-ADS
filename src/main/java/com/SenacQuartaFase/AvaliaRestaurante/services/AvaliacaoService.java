@@ -34,4 +34,8 @@ public class AvaliacaoService {
         return avaliacoesBuscadas;
     }
 
+    public boolean usuarioAvaliouRestaurante(Long restauranteId, Long usuarioId){
+        return repository.existsByRestauranteIdAndPessoaId(restauranteId, usuarioId);
+    }
+
 }

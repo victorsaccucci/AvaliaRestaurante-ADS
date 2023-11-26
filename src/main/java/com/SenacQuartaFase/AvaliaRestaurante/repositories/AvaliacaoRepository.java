@@ -11,4 +11,6 @@ import java.util.List;
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
     @Query(value = "SELECT * FROm avaliacao where restaurante_id = ? ", nativeQuery = true)
     List<Avaliacao> buscarRestaurantePeloIdusuario(Long restaurante_id);
+
+    boolean existsByRestauranteIdAndPessoaId(Long restauranteId, Long usuarioId);
 }
