@@ -32,7 +32,7 @@ public class Restaurante {
     private String cnpj;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "restaurante")
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
 
     public Restaurante(Long id, List<Avaliacao> avaliacoes, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, String imagem, String cnpj) {
