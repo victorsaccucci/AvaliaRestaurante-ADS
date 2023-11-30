@@ -35,6 +35,8 @@ public class Restaurante {
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
 
+    private Double media;
+
     public Restaurante(Long id, List<Avaliacao> avaliacoes, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, String imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
