@@ -3,6 +3,7 @@ package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
 import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
+import com.SenacQuartaFase.AvaliaRestaurante.services.PessoaService;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -54,21 +55,32 @@ public class RestauranteController {
         service.deletarRestaurante(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante, @PathVariable Long id){
-        Restaurante restauranteExistente = service.buscarRestaurantePeloId(id);
+    @PutMapping()
+    public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante) throws AvaliaRestauranteException {
+        validarPermissao(restaurante);
 
-        if (restauranteExistente != null) {
-            restaurante.setId(id);
-            Restaurante restauranteAtualizado = service.atualizar(restaurante);
-            return ResponseEntity.ok(restauranteAtualizado);
-        } else {
-            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(service.atualizar(restaurante));
+    }
+
+    private void validarPermissao(Restaurante restaurante) throws AvaliaRestauranteException {
+        Restaurante restauranteOriginal = service.buscarRestaurantePeloId(restaurante.getId());
+
+        if(restauranteOriginal == null){
+            throw new AvaliaRestauranteException("Restaurante não encontrado");
+        }
+
+        if(restaurante.getPessoa().getId() != restauranteOriginal.getPessoa().getId()){
+            throw new AvaliaRestauranteException("Usuário sem permissão");
         }
     }
 
     @GetMapping("/{id}/media-avaliacoes")
     public ResponseEntity<Double> calcularMediaAvaliacoes(@PathVariable Long id) throws AvaliaRestauranteException {
-        return ResponseEntity.ok(service.calcularMediaAvaliacoes(id));
+        double media = service.calcularMediaAvaliacoes(id);
+        Restaurante restaurante = buscarRestaurantePeloId(id);
+        restaurante.setMedia(media);
+        service.atualizar(restaurante);
+
+        return ResponseEntity.ok(media);
     }
 }
