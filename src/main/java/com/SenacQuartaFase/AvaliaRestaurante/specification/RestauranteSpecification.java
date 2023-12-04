@@ -39,15 +39,24 @@ public class RestauranteSpecification {
                         "%" + seletor.getCidade() + "%"));
             }
 
-
             //Busca pela avaliação minima e maxima
-            if(seletor.getAvaliacaoMin() != null && seletor.getAvaliacaoMax() != null){
-                predicates.add(cb.between(root.get("avaliacao"), seletor.getAvaliacaoMin(),
-                        seletor.getAvaliacaoMax()));
-            }  else if(seletor.getAvaliacaoMin() != null){
-                predicates.add(cb.greaterThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMin()));
-            } else if(seletor.getAvaliacaoMax() != null){
-                predicates.add(cb.lessThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMax()));
+//            if(seletor.getAvaliacaoMin() != null && seletor.getAvaliacaoMax() != null){
+//                predicates.add(cb.between(root.get("avaliacao"), seletor.getAvaliacaoMin(),
+//                        seletor.getAvaliacaoMax()));
+//            }  else if(seletor.getAvaliacaoMin() != null){
+//                predicates.add(cb.greaterThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMin()));
+//            } else if(seletor.getAvaliacaoMax() != null){
+//                predicates.add(cb.lessThanOrEqualTo(root.get("avaliacao"), seletor.getAvaliacaoMax()));
+//            }
+
+            //Busca pela média min e máxima
+            if(seletor.getMediaMin() != null && seletor.getMediaMax() != null){
+                predicates.add(cb.between(root.get("media"), seletor.getMediaMin(),
+                        seletor.getMediaMax()));
+            } else if(seletor.getMediaMin() != null){
+                predicates.add(cb.greaterThanOrEqualTo(root.get("media"), seletor.getMediaMin()));
+            } else if(seletor.getMediaMax() != null){
+                predicates.add((cb.lessThanOrEqualTo(root.get("media"), seletor.getMediaMax())));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));

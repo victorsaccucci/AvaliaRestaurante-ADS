@@ -8,8 +8,8 @@ public class RestauranteSeletor extends BaseSeletor{
     private String cep;
     private String cidade;
     private int numero;
-    private Double avaliacaoMin;
-    private Double avaliacaoMax;
+    private Double mediaMin;
+    private Double mediaMax;
 
     public String getNome() {
         return nome;
@@ -19,20 +19,20 @@ public class RestauranteSeletor extends BaseSeletor{
         this.nome = nome;
     }
 
-    public Double getAvaliacaoMin() {
-        return avaliacaoMin;
+    public Double getMediaMin() {
+        return mediaMin;
     }
 
-    public void setAvaliacaoMin(Double avaliacaoMin) {
-        this.avaliacaoMin = avaliacaoMin;
+    public void setMediaMin(Double mediaMin) {
+        this.mediaMin = mediaMin;
     }
 
-    public Double getAvaliacaoMax() {
-        return avaliacaoMax;
+    public Double getMediaMax() {
+        return mediaMax;
     }
 
-    public void setAvaliacaoMax(Double avaliacaoMax) {
-        this.avaliacaoMax = avaliacaoMax;
+    public void setMediaMax(Double mediaMax) {
+        this.mediaMax = mediaMax;
     }
 
     public String getRua() {
