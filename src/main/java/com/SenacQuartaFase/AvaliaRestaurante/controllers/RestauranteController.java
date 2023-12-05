@@ -58,7 +58,6 @@ public class RestauranteController {
     @PutMapping()
     public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante) throws AvaliaRestauranteException {
         validarPermissao(restaurante);
-
         return ResponseEntity.ok(service.atualizar(restaurante));
     }
 
@@ -74,7 +73,7 @@ public class RestauranteController {
         }
     }
 
-    @GetMapping("/{id}/media-avaliacoes")
+    @GetMapping("/{id}/media")
     public ResponseEntity<Double> calcularMediaAvaliacoes(@PathVariable Long id) throws AvaliaRestauranteException {
         double media = service.calcularMediaAvaliacoes(id);
         Restaurante restaurante = buscarRestaurantePeloId(id);
