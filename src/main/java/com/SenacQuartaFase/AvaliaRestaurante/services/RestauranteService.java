@@ -118,4 +118,8 @@ public class RestauranteService {
 
         return somaAvaliacoes / avaliacoes.size();
     }
+
+    public List<Restaurante> ordenarRestaurantesMedia() {
+        return repository.ordenarMaiorMedia();
+    }
 }

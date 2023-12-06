@@ -82,4 +82,10 @@ public class RestauranteController {
 
         return ResponseEntity.ok(media);
     }
+
+    @GetMapping("/ordenar")
+    public List<Restaurante> ordenarMaiorMedia(){
+        List<Restaurante> restaurantesOrdenados = service.ordenarRestaurantesMedia();
+        return restaurantesOrdenados;
+    }
 }

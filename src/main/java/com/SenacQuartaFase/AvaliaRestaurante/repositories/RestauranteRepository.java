@@ -16,4 +16,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long>,
     @Query(value = "SELECT *  FROM restaurante WHERE pessoa_id = ?", nativeQuery = true)
     List<Restaurante> listarPorIdUsuario(Long id);
 
+    @Query(value = "SELECT * FROM restaurante ORDER BY media DESC", nativeQuery = true)
+    List<Restaurante> ordenarMaiorMedia();
+
 }
