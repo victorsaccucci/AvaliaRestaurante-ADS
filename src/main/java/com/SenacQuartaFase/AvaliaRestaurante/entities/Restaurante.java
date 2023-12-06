@@ -37,7 +37,7 @@ public class Restaurante {
 
     private Double media;
 
-    public Restaurante(Long id, List<Avaliacao> avaliacoes, String nome, Pessoa pessoa, Endereco endereco, double avaliacao, String imagem, String cnpj) {
+    public Restaurante(Long id, List<Avaliacao> avaliacoes, String nome, Pessoa pessoa, Endereco endereco,  String imagem, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.pessoa = pessoa;
