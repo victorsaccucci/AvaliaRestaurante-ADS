@@ -18,4 +18,6 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long>,
 
     @Query(value = "SELECT * FROM restaurante ORDER BY media DESC", nativeQuery = true)
     List<Restaurante> ordenarMaiorMedia();
+
+    boolean existsByCnpj(String cnpj);
 }

@@ -20,8 +20,12 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository repository;
 
-    public Restaurante save(Restaurante novoRestaurante) throws AvaliaRestauranteException{
+    public Restaurante save(Restaurante novoRestaurante) throws AvaliaRestauranteException {
         validarCamposObrigatorios(novoRestaurante);
+
+        if (repository.existsByCnpj(novoRestaurante.getCnpj())) {
+            throw new AvaliaRestauranteException("Restaurante já cadastrado com este CNPJ!");
+        }
         return repository.save(novoRestaurante);
     }
 
@@ -47,7 +51,7 @@ public class RestauranteService {
         repository.deleteById(id);
     }
 
-    public Restaurante atualizar(Restaurante restaurante){
+    public Restaurante atualizar(Restaurante restaurante) {
         return repository.save(restaurante);
     }
 

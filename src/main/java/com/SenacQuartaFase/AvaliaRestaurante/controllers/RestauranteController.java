@@ -2,6 +2,7 @@ package com.SenacQuartaFase.AvaliaRestaurante.controllers;
 
 import com.SenacQuartaFase.AvaliaRestaurante.entities.Restaurante;
 import com.SenacQuartaFase.AvaliaRestaurante.exceptions.AvaliaRestauranteException;
+import com.SenacQuartaFase.AvaliaRestaurante.repositories.RestauranteRepository;
 import com.SenacQuartaFase.AvaliaRestaurante.seletores.RestauranteSeletor;
 import com.SenacQuartaFase.AvaliaRestaurante.services.PessoaService;
 import com.SenacQuartaFase.AvaliaRestaurante.services.RestauranteService;
@@ -19,6 +20,9 @@ public class RestauranteController {
 
     @Autowired
     private RestauranteService service;
+
+//    @Autowired
+//    private RestauranteRepository repository;
 
     @PostMapping()
     public ResponseEntity<Restaurante> salvar(@RequestBody Restaurante restauranteComImagem) throws AvaliaRestauranteException{
@@ -58,6 +62,9 @@ public class RestauranteController {
     @PutMapping()
     public ResponseEntity<Restaurante> atualizarRestaurante(@RequestBody Restaurante restaurante) throws AvaliaRestauranteException {
         validarPermissao(restaurante);
+//        if(repository.existsByCnpj(restaurante.getCnpj())){
+//            throw new AvaliaRestauranteException("Não é possível atribuir este CNPJ!");
+//        }
         return ResponseEntity.ok(service.atualizar(restaurante));
     }
 

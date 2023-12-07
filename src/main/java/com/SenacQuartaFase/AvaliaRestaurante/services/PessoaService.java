@@ -15,6 +15,11 @@ public class PessoaService {
 
     public Pessoa salvar(Pessoa novoVisitante) throws AvaliaRestauranteException{
         validarCamposObrigatorios(novoVisitante);
+
+        if (repository.existsByCpf(novoVisitante.getCpf())) {
+            throw new AvaliaRestauranteException("Pessoa já cadastrado com este CPF!");
+        }
+
         return repository.save(novoVisitante);
     }
 
